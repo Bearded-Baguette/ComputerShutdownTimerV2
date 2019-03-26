@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShutdownTimer", "ComputerShutdownTimer\ComputerShutdownTimer.csproj", "{B171962C-2515-407D-8BF9-E104BD8DECDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B171962C-2515-407D-8BF9-E104BD8DECDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B171962C-2515-407D-8BF9-E104BD8DECDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B171962C-2515-407D-8BF9-E104BD8DECDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B171962C-2515-407D-8BF9-E104BD8DECDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6D1FD9A-03F3-4F99-A8B0-C362169C0171}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\bin\Debug\ComputerShutdownTimer.exe.config
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\bin\Debug\ComputerShutdownTimer.exe
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\bin\Debug\ComputerShutdownTimer.pdb
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csprojAssemblyReference.cache
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.Properties.Resources.resources
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csproj.GenerateResource.cache
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csproj.CoreCompileInputs.cache
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.exe
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.pdb
+D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.MainWindow.resources
