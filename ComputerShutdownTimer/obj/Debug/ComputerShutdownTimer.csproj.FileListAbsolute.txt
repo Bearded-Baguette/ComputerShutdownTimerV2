@@ -8,14 +8,14 @@ D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\D
 D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.exe
 D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.pdb
 D:\Visual Studio 2017\Projects\ComputerShutdownTimer\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.MainWindow.resources
-D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\ComputerShutdownTimer.exe.config
-D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\ComputerShutdownTimer.exe
-D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\ComputerShutdownTimer.pdb
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csproj.AssemblyReference.cache
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csproj.SuggestedBindingRedirects.cache
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.MainWindow.resources
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.Properties.Resources.resources
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csproj.GenerateResource.cache
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.csproj.CoreCompileInputs.cache
-D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.exe
-D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.pdb
+D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\Computer Shutdown Timer.exe.config
+D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\Computer Shutdown Timer.exe
+D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\Computer Shutdown Timer.pdb
+D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\Computer Shutdown Timer.exe
+D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\Computer Shutdown Timer.pdb

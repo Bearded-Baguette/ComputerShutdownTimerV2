@@ -205,7 +205,7 @@
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon.BalloonTipText = "Computer Shutdown Timer Set";
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "notifyIcon";
+            this.notifyIcon.Text = "Computer Shutdown Timer";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
@@ -223,6 +223,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.minuteDropdown);
             this.Controls.Add(this.hourDropdown);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "Computer Shutdown Timer";
             this.Load += new System.EventHandler(this.MainWindow_Load);

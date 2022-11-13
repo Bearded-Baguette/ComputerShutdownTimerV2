@@ -7,7 +7,7 @@
     <ProjectGuid>{B171962C-2515-407D-8BF9-E104BD8DECDB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ComputerShutdownTimer</RootNamespace>
-    <AssemblyName>ComputerShutdownTimer</AssemblyName>
+    <AssemblyName>Computer Shutdown Timer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>188-188840b19fb016e51649416ba4bdbaa8.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="188-188840b19fb016e51649416ba4bdbaa8.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
