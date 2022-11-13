@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.Remoting;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ComputerShutdownTimer
@@ -9,15 +12,18 @@ namespace ComputerShutdownTimer
         DateTime currentTime;
         DateTime selectedDate;
         DateTime shutdownTime;
+        double remainingMinutes;
         int selectedHour, selectedMinute;
         string selectedAmPm;
+        string shutdownText;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.ControlBox = false;
         }
 
-        private void startButton_MouseClick(object sender, MouseEventArgs e)
+        private async void startButton_MouseClick(object sender, MouseEventArgs e)
         {
             currentTime = DateTime.Now;
             selectedDate = datePicker.Value;
@@ -41,8 +47,17 @@ namespace ComputerShutdownTimer
                 statusText.Text = "Shutdown time is set before current time. Enter another time.";
                 return;
             }
+            else
+            {
+                shutdownText = "Shutdown set for \n" + shutdownTime.ToString();
+                statusText.Text = shutdownText;
 
-            statusText.Text = "Shutdown set for \n" + shutdownTime.ToString();
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += new DoWorkEventHandler(worker_BeginShutdownTimer);
+                worker.RunWorkerAsync();
+
+                this.WindowState = FormWindowState.Minimized;
+            }
 
         }
 
@@ -76,15 +91,60 @@ namespace ComputerShutdownTimer
                 00);
         }
 
-        private void StartTimer()
+        private void worker_BeginShutdownTimer(object sender, EventArgs e)
         {
+            // Every minute, check to see how much time is left
             while (true)
             {
-                if (shutdownTime.Subtract(currentTime).Ticks < 0)
+                currentTime = DateTime.Now;
+
+                // Retrieve the remaining amount of time
+                remainingMinutes = GetRemainingMinutes(currentTime, shutdownTime);
+
+                //If time remaining is less than 5 minutes, create popup saying shutdown in X minutes.
+                if (remainingMinutes <= 5 && remainingMinutes > 0)
                 {
-                    Process.Start("shutdown", "/s /t 0");
+                    MessageBox.Show("Computer shutting down in " + remainingMinutes + "minutes. Please save all work now!");
                 }
+                else if (remainingMinutes <= 0)
+                {
+                    MessageBox.Show("Shutting down computer in 10 seconds! Have a good night!");
+                    System.Threading.Thread.Sleep(10 * 1000); //Wait 10 seconds before shutting down the computer
+                    CommenceShutdown();
+                }
+                // Delay loop by one minute
+                System.Threading.Thread.Sleep(1 * 60 * 1000); //1 minute * 60 seconds * 1000 milliseconds
             }
+        }
+        
+        private double GetRemainingMinutes(DateTime currentTime, DateTime shutdownTime)
+        {
+            // Subtract the difference between the current time and shutdown time. Return the TimeSpan difference.
+            TimeSpan span = shutdownTime - currentTime;
+            return remainingMinutes = span.TotalMinutes;
+        }
+
+        private void MainWindow_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                notifyIcon.Visible = true;
+                notifyIcon.ShowBalloonTip(3000, "Computer Shutdown Timer", shutdownText, ToolTipIcon.None);
+                this.ShowInTaskbar = false;
+            }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            notifyIcon.Visible = false;
+        }
+
+        private void CommenceShutdown()
+        {
+            Process.Start("shutdown", "/s /t 0");
         }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.hourDropdown = new System.Windows.Forms.ComboBox();
             this.minuteDropdown = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,6 +39,7 @@
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.statusText = new System.Windows.Forms.RichTextBox();
             this.startButton = new System.Windows.Forms.Button();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // hourDropdown
@@ -197,6 +200,15 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.startButton_MouseClick);
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon.BalloonTipText = "Computer Shutdown Timer Set";
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "notifyIcon";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,8 +224,9 @@
             this.Controls.Add(this.minuteDropdown);
             this.Controls.Add(this.hourDropdown);
             this.Name = "MainWindow";
-            this.Text = "Form1";
+            this.Text = "Computer Shutdown Timer";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.Resize += new System.EventHandler(this.MainWindow_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +243,7 @@
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.RichTextBox statusText;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 
