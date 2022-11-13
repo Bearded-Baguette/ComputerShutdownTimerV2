@@ -21,6 +21,12 @@ namespace ComputerShutdownTimer
         {
             InitializeComponent();
             this.ControlBox = false;
+            this.ShowInTaskbar= false;
+            this.TopMost = true;
+            this.ShowDialog();
+            this.BringToFront();
+            this.Activate();
+            this.Focus();
         }
 
         private async void startButton_MouseClick(object sender, MouseEventArgs e)
@@ -146,5 +152,11 @@ namespace ComputerShutdownTimer
         {
             Process.Start("shutdown", "/s /t 0");
         }
+
+        protected override void OnShown(EventArgs e)
+        {
+            Focus();
+        }
+
     }
 }
