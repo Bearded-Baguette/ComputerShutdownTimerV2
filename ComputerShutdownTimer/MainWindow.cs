@@ -16,6 +16,7 @@ namespace ComputerShutdownTimer
         int selectedHour, selectedMinute;
         string selectedAmPm;
         string shutdownText;
+        static Timer myTimer;
 
         public MainWindow()
         {
@@ -110,7 +111,12 @@ namespace ComputerShutdownTimer
                 //If time remaining is less than 5 minutes, create popup saying shutdown in X minutes.
                 if (remainingMinutes <= 5 && remainingMinutes > 0)
                 {
-                    MessageBox.Show("Computer shutting down in " + remainingMinutes + "minutes. Please save all work now!");
+
+
+                    //Create a popup, alerting the user
+                    CreatePopup();
+                    // Delay loop by one minute
+                    System.Threading.Thread.Sleep(1 * 45 * 1000); //1 minute * 60 seconds * 1000 milliseconds
                 }
                 else if (remainingMinutes <= 0)
                 {
@@ -118,8 +124,6 @@ namespace ComputerShutdownTimer
                     System.Threading.Thread.Sleep(10 * 1000); //Wait 10 seconds before shutting down the computer
                     CommenceShutdown();
                 }
-                // Delay loop by one minute
-                System.Threading.Thread.Sleep(1 * 60 * 1000); //1 minute * 60 seconds * 1000 milliseconds
             }
         }
         
@@ -153,10 +157,77 @@ namespace ComputerShutdownTimer
             Process.Start("shutdown", "/s /t 0");
         }
 
-        protected override void OnShown(EventArgs e)
-        {
-            Focus();
-        }
+        //public void CreatePopup()
+        //{
+        //    bool exitFlag = false;
+        //    myTimer = new Timer();
+
+        //    /* Adds the event and the event handler for the method that will 
+        //    process the timer event to the timer. */
+        //    myTimer.Tick += new EventHandler(TimerEventProcessor);
+
+        //    // Sets the timer interval to 15 seconds.
+        //    myTimer.Interval = 15 * 1000; //15 seconds * 1000 milliseconds;
+        //    myTimer.Start();
+
+        //    // Runs the timer, and raises the event.
+        //    while (exitFlag == false)
+        //    {
+        //        // Processes all the events in the queue.
+        //        Application.DoEvents();
+        //    }
+        //}
+
+        //private static void TimerEventProcessor(Object myObject,
+        //                                EventArgs myEventArgs)
+        //{
+        //    myTimer.Stop();
+
+        //    // Displays a message box asking whether to continue running the timer.
+        //    if (MessageBox.Show("Continue running?", "Count is: " + alarmCounter,
+        //       MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //    {
+        //        // Restarts the timer and increments the counter.
+        //        alarmCounter += 1;
+        //        myTimer.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        // Stops the timer.
+        //        exitFlag = true;
+        //    }
+        //}
+
+
+        //public void testc()
+        //{
+        //    // This function creates a timer object that will tick down.
+        //    // The timer will handle the event of creating the popup box.
+        //    // When the timer ends, the box closes.
+        //    // Very nice.
+        //    Timer t = new Timer();
+        //    t.Interval = 15 * 1000; //15 seconds * 1000 milliseconds
+        //    t.Tick += new EventHandler(timer_CreatePopup);
+        //    t.Start();
+
+        //}
+
+        //public void timer_CreatePopup(object sender, EventArgs e)
+        //{
+        //    String shutdownMessage = "Computer shutting down in " + remainingMinutes.ToString("0.") + " minutes. Please save all work now!";
+        //    ShutdownPopup popup = new ShutdownPopup(shutdownMessage);
+        //    popup.Show();
+        //    popup.BringToFront();
+        //    popup.Activate();
+        //    popup.Focus();
+
+        //}
+
+        //private void timer_Tick(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("Tick");
+        //    this.Close();
+        //}
 
     }
 }

@@ -19,3 +19,4 @@ D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\Computer Shutd
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\bin\Debug\Computer Shutdown Timer.pdb
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\Computer Shutdown Timer.exe
 D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\Computer Shutdown Timer.pdb
+D:\Github\ComputerShutdownTimerV2\ComputerShutdownTimer\obj\Debug\ComputerShutdownTimer.ShutdownPopup.resources
