@@ -29,24 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShutdownPopup));
-            this.ShutdownTextBox = new System.Windows.Forms.RichTextBox();
+            this.shutdownLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // ShutdownTextBox
+            // shutdownLabel
             // 
-            this.ShutdownTextBox.Location = new System.Drawing.Point(12, 12);
-            this.ShutdownTextBox.Name = "ShutdownTextBox";
-            this.ShutdownTextBox.Size = new System.Drawing.Size(285, 104);
-            this.ShutdownTextBox.TabIndex = 0;
-            this.ShutdownTextBox.Text = "";
-            this.ShutdownTextBox.TextChanged += new System.EventHandler(this.ShutdownTextBox_TextChanged);
+            this.shutdownLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shutdownLabel.Location = new System.Drawing.Point(0, 0);
+            this.shutdownLabel.Name = "shutdownLabel";
+            this.shutdownLabel.Size = new System.Drawing.Size(309, 138);
+            this.shutdownLabel.TabIndex = 1;
+            this.shutdownLabel.Text = "Shutdown Incoming!";
+            this.shutdownLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.shutdownLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // ShutdownPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 132);
-            this.Controls.Add(this.ShutdownTextBox);
+            this.ClientSize = new System.Drawing.Size(309, 138);
+            this.Controls.Add(this.shutdownLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShutdownPopup";
             this.Text = "Shutdown Alert!";
@@ -57,6 +59,6 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox ShutdownTextBox;
+        public System.Windows.Forms.Label shutdownLabel;
     }
 }

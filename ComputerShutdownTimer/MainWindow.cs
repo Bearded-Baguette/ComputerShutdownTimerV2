@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.Remoting;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace ComputerShutdownTimer
@@ -16,7 +16,9 @@ namespace ComputerShutdownTimer
         int selectedHour, selectedMinute;
         string selectedAmPm;
         string shutdownText;
-        static Timer myTimer;
+        ShutdownPopup shutdownPopup;
+        System.Timers.Timer myTimer;
+        bool exitFlag = false;
 
         public MainWindow()
         {
@@ -30,7 +32,7 @@ namespace ComputerShutdownTimer
             this.Focus();
         }
 
-        private async void startButton_MouseClick(object sender, MouseEventArgs e)
+        private void startButton_MouseClick(object sender, MouseEventArgs e)
         {
             currentTime = DateTime.Now;
             selectedDate = datePicker.Value;
@@ -106,13 +108,11 @@ namespace ComputerShutdownTimer
                 currentTime = DateTime.Now;
 
                 // Retrieve the remaining amount of time
-                remainingMinutes = GetRemainingMinutes(currentTime, shutdownTime);
+                remainingMinutes = GetRemainingMinutes_Double(currentTime, shutdownTime);
 
                 //If time remaining is less than 5 minutes, create popup saying shutdown in X minutes.
                 if (remainingMinutes <= 5 && remainingMinutes > 0)
                 {
-
-
                     //Create a popup, alerting the user
                     CreatePopup();
                     // Delay loop by one minute
@@ -127,11 +127,18 @@ namespace ComputerShutdownTimer
             }
         }
         
-        private double GetRemainingMinutes(DateTime currentTime, DateTime shutdownTime)
+        private double GetRemainingMinutes_Double(DateTime currentTime, DateTime shutdownTime)
         {
             // Subtract the difference between the current time and shutdown time. Return the TimeSpan difference.
             TimeSpan span = shutdownTime - currentTime;
             return remainingMinutes = span.TotalMinutes;
+        }
+
+        private TimeSpan GetRemainingMinutes_TimeSpan(DateTime currentTime, DateTime shutdownTime)
+        {
+            // Subtract the difference between the current time and shutdown time. Return the TimeSpan difference.
+            TimeSpan span = shutdownTime - currentTime;
+            return span;
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
@@ -157,77 +164,36 @@ namespace ComputerShutdownTimer
             Process.Start("shutdown", "/s /t 0");
         }
 
-        //public void CreatePopup()
-        //{
-        //    bool exitFlag = false;
-        //    myTimer = new Timer();
+        private void CreatePopup()
+        {
+            //Create new timer that ticks every 1 second
+            System.Windows.Forms.Timer newTimer = new System.Windows.Forms.Timer();
+            newTimer.Tick += new EventHandler(newTimer_Tick);
+            newTimer.Interval = 1000; //1 second
+            newTimer.Start();
 
-        //    /* Adds the event and the event handler for the method that will 
-        //    process the timer event to the timer. */
-        //    myTimer.Tick += new EventHandler(TimerEventProcessor);
-
-        //    // Sets the timer interval to 15 seconds.
-        //    myTimer.Interval = 15 * 1000; //15 seconds * 1000 milliseconds;
-        //    myTimer.Start();
-
-        //    // Runs the timer, and raises the event.
-        //    while (exitFlag == false)
-        //    {
-        //        // Processes all the events in the queue.
-        //        Application.DoEvents();
-        //    }
-        //}
-
-        //private static void TimerEventProcessor(Object myObject,
-        //                                EventArgs myEventArgs)
-        //{
-        //    myTimer.Stop();
-
-        //    // Displays a message box asking whether to continue running the timer.
-        //    if (MessageBox.Show("Continue running?", "Count is: " + alarmCounter,
-        //       MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //    {
-        //        // Restarts the timer and increments the counter.
-        //        alarmCounter += 1;
-        //        myTimer.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        // Stops the timer.
-        //        exitFlag = true;
-        //    }
-        //}
+            //Create a popup window to display the time remaining
+            shutdownPopup = new ShutdownPopup();
+            shutdownPopup.ControlBox = false;
+            shutdownPopup.ShowInTaskbar = false;
+            shutdownPopup.TopMost = true;
+            shutdownPopup.Show();
+            shutdownPopup.BringToFront();
 
 
-        //public void testc()
-        //{
-        //    // This function creates a timer object that will tick down.
-        //    // The timer will handle the event of creating the popup box.
-        //    // When the timer ends, the box closes.
-        //    // Very nice.
-        //    Timer t = new Timer();
-        //    t.Interval = 15 * 1000; //15 seconds * 1000 milliseconds
-        //    t.Tick += new EventHandler(timer_CreatePopup);
-        //    t.Start();
+            while (exitFlag == false)
+            {
+                Application.DoEvents();
+            }
+        }
 
-        //}
+        private void newTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan remainingTime = GetRemainingMinutes_TimeSpan(DateTime.Now, shutdownTime);
+            string remainingMinutes = new DateTime(remainingTime.Ticks).ToString("mm:ss");
+            string shutdownMessage = "Computer will shutdown in " + remainingMinutes + ". Please save all work now!";
 
-        //public void timer_CreatePopup(object sender, EventArgs e)
-        //{
-        //    String shutdownMessage = "Computer shutting down in " + remainingMinutes.ToString("0.") + " minutes. Please save all work now!";
-        //    ShutdownPopup popup = new ShutdownPopup(shutdownMessage);
-        //    popup.Show();
-        //    popup.BringToFront();
-        //    popup.Activate();
-        //    popup.Focus();
-
-        //}
-
-        //private void timer_Tick(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("Tick");
-        //    this.Close();
-        //}
-
+            shutdownPopup.shutdownLabel.Text = shutdownMessage;
+        }
     }
 }
