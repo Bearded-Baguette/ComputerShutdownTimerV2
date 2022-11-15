@@ -66,6 +66,7 @@ namespace ComputerShutdownTimer
                 worker.RunWorkerAsync();
 
                 this.WindowState = FormWindowState.Minimized;
+                this.Visible = false;
             }
 
         }
@@ -120,7 +121,7 @@ namespace ComputerShutdownTimer
                 }
                 else if (remainingMinutes <= 0)
                 {
-                    MessageBox.Show("Shutting down computer in 10 seconds! Have a good night!");
+                    shutdownPopup.Text = "Shutting down computer in 10 seconds! Have a good night!";
                     System.Threading.Thread.Sleep(10 * 1000); //Wait 10 seconds before shutting down the computer
                     CommenceShutdown();
                 }
@@ -179,6 +180,8 @@ namespace ComputerShutdownTimer
             shutdownPopup.TopMost = true;
             shutdownPopup.Show();
             shutdownPopup.BringToFront();
+            shutdownPopup.Activate();
+            shutdownPopup.Focus();
 
 
             while (exitFlag == false)
@@ -190,10 +193,18 @@ namespace ComputerShutdownTimer
         private void newTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan remainingTime = GetRemainingMinutes_TimeSpan(DateTime.Now, shutdownTime);
-            string remainingMinutes = new DateTime(remainingTime.Ticks).ToString("mm:ss");
-            string shutdownMessage = "Computer will shutdown in " + remainingMinutes + ". Please save all work now!";
+            if (remainingTime <= TimeSpan.Zero)
+            {
+                CommenceShutdown();
+            }
+            else
+            {
+                string remainingMinutes = new DateTime(remainingTime.Ticks).ToString("mm:ss");
+                string shutdownMessage = "Computer will shutdown in " + remainingMinutes + ". Please save all work now!";
 
-            shutdownPopup.shutdownLabel.Text = shutdownMessage;
+                shutdownPopup.shutdownLabel.Text = shutdownMessage;
+            }
+
         }
     }
 }
