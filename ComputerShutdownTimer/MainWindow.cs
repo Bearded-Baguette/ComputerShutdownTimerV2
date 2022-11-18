@@ -114,14 +114,11 @@ namespace ComputerShutdownTimer
                 if (remainingMinutes <= 5 && remainingMinutes > 0)
                 {
                     //Create a popup, alerting the user
-                    //CreatePopup();
-                    BackgroundWorker worker = new BackgroundWorker();
-                    worker.DoWork += new DoWorkEventHandler(CreatePopup);
-                    worker.RunWorkerAsync();
-                    // Delay loop by one minute
-                    System.Threading.Thread.Sleep(1 * 45 * 1000); //1 minute * 60 seconds * 1000 milliseconds
+                    CreatePopup();
+                    // Delay loop by five minutes
+                    System.Threading.Thread.Sleep(5 * 60 * 1000); //1 minute * 60 seconds * 1000 milliseconds
                 }
-                else if (remainingMinutes <= 0)
+                else if (remainingMinutes <= 0) //This statement acts as a backup to start the shutdown methond (just in case...)
                 {
                     shutdownPopup.Text = "Shutting down computer in 10 seconds! Have a good night!";
                     System.Threading.Thread.Sleep(10 * 1000); //Wait 10 seconds before shutting down the computer
@@ -167,7 +164,7 @@ namespace ComputerShutdownTimer
             Process.Start("shutdown", "/s /t 0");
         }
 
-        private void CreatePopup(object sender, EventArgs e)
+        private void CreatePopup()
         {
             //Create new timer that ticks every 1 second
             System.Windows.Forms.Timer newTimer = new System.Windows.Forms.Timer();
