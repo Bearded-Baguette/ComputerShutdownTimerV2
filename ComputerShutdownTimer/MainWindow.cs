@@ -17,7 +17,6 @@ namespace ComputerShutdownTimer
         string selectedAmPm;
         string shutdownText;
         ShutdownPopup shutdownPopup;
-        System.Timers.Timer myTimer;
         bool exitFlag = false;
 
         public MainWindow()
@@ -115,7 +114,10 @@ namespace ComputerShutdownTimer
                 if (remainingMinutes <= 5 && remainingMinutes > 0)
                 {
                     //Create a popup, alerting the user
-                    CreatePopup();
+                    //CreatePopup();
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.DoWork += new DoWorkEventHandler(CreatePopup);
+                    worker.RunWorkerAsync();
                     // Delay loop by one minute
                     System.Threading.Thread.Sleep(1 * 45 * 1000); //1 minute * 60 seconds * 1000 milliseconds
                 }
@@ -165,7 +167,7 @@ namespace ComputerShutdownTimer
             Process.Start("shutdown", "/s /t 0");
         }
 
-        private void CreatePopup()
+        private void CreatePopup(object sender, EventArgs e)
         {
             //Create new timer that ticks every 1 second
             System.Windows.Forms.Timer newTimer = new System.Windows.Forms.Timer();
@@ -175,10 +177,10 @@ namespace ComputerShutdownTimer
 
             //Create a popup window to display the time remaining
             shutdownPopup = new ShutdownPopup();
+            shutdownPopup.Show();
             shutdownPopup.ControlBox = false;
             shutdownPopup.ShowInTaskbar = false;
             shutdownPopup.TopMost = true;
-            shutdownPopup.Show();
             shutdownPopup.BringToFront();
             shutdownPopup.Activate();
             shutdownPopup.Focus();
